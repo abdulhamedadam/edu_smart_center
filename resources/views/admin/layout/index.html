@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProgMaker - لوحة التحكم</title>
+    
+    <!-- Bootstrap 5 RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+    
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css">
+    
+    <!-- Summernote CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.min.css">
+    
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/datatables.css">
+    <link rel="stylesheet" href="css/forms.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="bi bi-code-square"></i>
+                </div>
+                <span class="logo-text">ProgMaker</span>
+            </div>
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <ul class="sidebar-nav">
+                <li class="nav-section">
+                    <span class="section-title">الرئيسية</span>
+                </li>
+                <li class="nav-item active">
+                    <a href="#dashboard" class="nav-link" data-page="dashboard">
+                        <i class="bi bi-speedometer2"></i>
+                        <span class="nav-text">لوحة التحكم</span>
+                    </a>
+                </li>
+                
+                <li class="nav-section">
+                    <span class="section-title">الإدارة</span>
+                </li>
+                <li class="nav-item">
+                    <a href="#users" class="nav-link" data-page="users">
+                        <i class="bi bi-people"></i>
+                        <span class="nav-text">المستخدمين</span>
+                        <span class="badge bg-primary">24</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link" data-page="products">
+                        <i class="bi bi-box-seam"></i>
+                        <span class="nav-text">المنتجات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#orders" class="nav-link" data-page="orders">
+                        <i class="bi bi-cart3"></i>
+                        <span class="nav-text">الطلبات</span>
+                        <span class="badge bg-success">12</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#categories" class="nav-link" data-page="categories">
+                        <i class="bi bi-grid"></i>
+                        <span class="nav-text">الفئات</span>
+                    </a>
+                </li>
+                
+                <li class="nav-section">
+                    <span class="section-title">المحتوى</span>
+                </li>
+                <li class="nav-item">
+                    <a href="#posts" class="nav-link" data-page="posts">
+                        <i class="bi bi-file-text"></i>
+                        <span class="nav-text">المقالات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#pages" class="nav-link" data-page="pages">
+                        <i class="bi bi-file-earmark"></i>
+                        <span class="nav-text">الصفحات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#media" class="nav-link" data-page="media">
+                        <i class="bi bi-images"></i>
+                        <span class="nav-text">الوسائط</span>
+                    </a>
+                </li>
+                
+                <li class="nav-section">
+                    <span class="section-title">الإعدادات</span>
+                </li>
+                <li class="nav-item">
+                    <a href="#settings" class="nav-link" data-page="settings">
+                        <i class="bi bi-gear"></i>
+                        <span class="nav-text">الإعدادات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#forms" class="nav-link" data-page="forms">
+                        <i class="bi bi-ui-checks"></i>
+                        <span class="nav-text">النماذج</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=Admin+User&background=6366f1&color=fff" alt="User" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name">المسؤول</span>
+                    <span class="user-role">مدير النظام</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <div id="content-wrapper">
+        <!-- Top Navbar -->
+        <nav class="top-navbar">
+            <div class="navbar-left">
+                <button id="mobileToggle" class="mobile-toggle d-lg-none">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="search-box d-none d-md-flex">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="بحث...">
+                </div>
+            </div>
+            
+            <div class="navbar-right">
+                <div class="nav-item dropdown">
+                    <button class="nav-btn" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-badge">5</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end notifications-dropdown">
+                        <div class="dropdown-header">
+                            <span>الإشعارات</span>
+                            <a href="#" class="mark-all-read">تحديد الكل كمقروء</a>
+                        </div>
+                        <div class="notifications-list">
+                            <a href="#" class="notification-item unread">
+                                <div class="notification-icon bg-primary">
+                                    <i class="bi bi-person-plus"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p>مستخدم جديد تم تسجيله</p>
+                                    <span class="time">منذ 5 دقائق</span>
+                                </div>
+                            </a>
+                            <a href="#" class="notification-item unread">
+                                <div class="notification-icon bg-success">
+                                    <i class="bi bi-check-circle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p>تم اكتمال الطلب #1234</p>
+                                    <span class="time">منذ 15 دقيقة</span>
+                                </div>
+                            </a>
+                            <a href="#" class="notification-item">
+                                <div class="notification-icon bg-warning">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p>تنبيه: مخزون منخفض</p>
+                                    <span class="time">منذ ساعة</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-footer">
+                            <a href="#">عرض الكل</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nav-item dropdown">
+                    <button class="nav-btn" data-bs-toggle="dropdown">
+                        <i class="bi bi-envelope"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end messages-dropdown">
+                        <div class="dropdown-header">
+                            <span>الرسائل</span>
+                            <a href="#" class="mark-all-read">تحديد الكل كمقروء</a>
+                        </div>
+                        <div class="messages-list">
+                            <a href="#" class="message-item unread">
+                                <img src="https://ui-avatars.com/api/?name=Ahmed+Mohamed&background=random" alt="">
+                                <div class="message-content">
+                                    <h6>أحمد محمد</h6>
+                                    <p>مرحباً، هل يمكنك مساعدتي في...</p>
+                                    <span class="time">منذ 10 دقائق</span>
+                                </div>
+                            </a>
+                            <a href="#" class="message-item unread">
+                                <img src="https://ui-avatars.com/api/?name=Sara+Ali&background=random" alt="">
+                                <div class="message-content">
+                                    <h6>سارة علي</h6>
+                                    <p>شكراً لك على المساعدة!</p>
+                                    <span class="time">منذ 30 دقيقة</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-footer">
+                            <a href="#">عرض الكل</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nav-item dropdown">
+                    <button class="nav-btn theme-toggle" id="themeToggle">
+                        <i class="bi bi-moon"></i>
+                    </button>
+                </div>
+                
+                <div class="nav-item dropdown user-dropdown">
+                    <button class="user-btn" data-bs-toggle="dropdown">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=6366f1&color=fff" alt="User">
+                        <span class="d-none d-md-inline">المسؤول</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a href="#" class="dropdown-item">
+                            <i class="bi bi-person"></i>
+                            الملف الشخصي
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="bi bi-gear"></i>
+                            الإعدادات
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-danger">
+                            <i class="bi bi-box-arrow-right"></i>
+                            تسجيل الخروج
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page-content active">
+                <div class="page-header">
+                    <h1 class="page-title">لوحة التحكم</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active">الرئيسية</li>
+                        </ol>
+                    </nav>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="row g-4 mb-4">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card primary animate__animated animate__fadeInUp">
+                            <div class="stat-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>2,543</h3>
+                                <p>إجمالي المستخدمين</p>
+                            </div>
+                            <div class="stat-chart">
+                                <span class="trend up">
+                                    <i class="bi bi-arrow-up"></i> 12.5%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card success animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
+                            <div class="stat-icon">
+                                <i class="bi bi-cart3"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>1,234</h3>
+                                <p>إجمالي الطلبات</p>
+                            </div>
+                            <div class="stat-chart">
+                                <span class="trend up">
+                                    <i class="bi bi-arrow-up"></i> 8.2%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card warning animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                            <div class="stat-icon">
+                                <i class="bi bi-box-seam"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>856</h3>
+                                <p>المنتجات</p>
+                            </div>
+                            <div class="stat-chart">
+                                <span class="trend down">
+                                    <i class="bi bi-arrow-down"></i> 3.1%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card danger animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
+                            <div class="stat-icon">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>$45,231</h3>
+                                <p>إجمالي المبيعات</p>
+                            </div>
+                            <div class="stat-chart">
+                                <span class="trend up">
+                                    <i class="bi bi-arrow-up"></i> 18.7%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-8">
+                        <div class="card chart-card">
+                            <div class="card-header">
+                                <h5>إحصائيات المبيعات</h5>
+                                <div class="card-actions">
+                                    <button class="btn btn-sm btn-outline-primary">يومي</button>
+                                    <button class="btn btn-sm btn-primary">أسبوعي</button>
+                                    <button class="btn btn-sm btn-outline-primary">شهري</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="salesChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card chart-card">
+                            <div class="card-header">
+                                <h5>توزيع المستخدمين</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="usersChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Orders -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>أحدث الطلبات</h5>
+                        <a href="#orders" class="btn btn-sm btn-primary" data-page="orders">
+                            عرض الكل
+                        </a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>رقم الطلب</th>
+                                        <th>العميل</th>
+                                        <th>المنتج</th>
+                                        <th>التاريخ</th>
+                                        <th>المبلغ</th>
+                                        <th>الحالة</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#ORD-001</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://ui-avatars.com/api/?name=Ahmed+Mohamed&background=random" alt="" class="rounded-circle me-2" width="32">
+                                                <span>أحمد محمد</span>
+                                            </div>
+                                        </td>
+                                        <td>لابتوب Dell XPS</td>
+                                        <td>2024-01-15</td>
+                                        <td>$1,299</td>
+                                        <td><span class="badge bg-success">مكتمل</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info"><i class="bi bi-eye"></i></button>
+                                            <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#ORD-002</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://ui-avatars.com/api/?name=Sara+Ali&background=random" alt="" class="rounded-circle me-2" width="32">
+                                                <span>سارة علي</span>
+                                            </div>
+                                        </td>
+                                        <td>آيفون 15 برو</td>
+                                        <td>2024-01-14</td>
+                                        <td>$999</td>
+                                        <td><span class="badge bg-warning">قيد المعالجة</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info"><i class="bi bi-eye"></i></button>
+                                            <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#ORD-003</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://ui-avatars.com/api/?name=Mohamed+Hassan&background=random" alt="" class="rounded-circle me-2" width="32">
+                                                <span>محمد حسن</span>
+                                            </div>
+                                        </td>
+                                        <td>سماعات Sony</td>
+                                        <td>2024-01-14</td>
+                                        <td>$299</td>
+                                        <td><span class="badge bg-danger">ملغي</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info"><i class="bi bi-eye"></i></button>
+                                            <button class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Page -->
+            <div id="users-page" class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">المستخدمين</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#dashboard">الرئيسية</a></li>
+                            <li class="breadcrumb-item active">المستخدمين</li>
+                        </ol>
+                    </nav>
+                </div>
+                
+                <div class="card datatable-card">
+                    <div class="card-header">
+                        <h5>قائمة المستخدمين</h5>
+                        <div class="card-actions">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                                <i class="bi bi-plus-lg"></i>
+                                إضافة مستخدم
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="usersTable" class="table table-striped table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>المستخدم</th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>الدور</th>
+                                    <th>الحالة</th>
+                                    <th>تاريخ التسجيل</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Page -->
+            <div id="products-page" class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">المنتجات</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#dashboard">الرئيسية</a></li>
+                            <li class="breadcrumb-item active">المنتجات</li>
+                        </ol>
+                    </nav>
+                </div>
+                
+                <div class="card datatable-card">
+                    <div class="card-header">
+                        <h5>قائمة المنتجات</h5>
+                        <div class="card-actions">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                                <i class="bi bi-plus-lg"></i>
+                                إضافة منتج
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="productsTable" class="table table-striped table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>المنتج</th>
+                                    <th>الفئة</th>
+                                    <th>السعر</th>
+                                    <th>المخزون</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forms Page -->
+            <div id="forms-page" class="page-content">
+                <div class="page-header">
+                    <h1 class="page-title">النماذج المتقدمة</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#dashboard">الرئيسية</a></li>
+                            <li class="breadcrumb-item active">النماذج</li>
+                        </ol>
+                    </nav>
+                </div>
+                
+                <div class="row g-4">
+                    <!-- Basic Form -->
+                    <div class="col-lg-6">
+                        <div class="card form-card">
+                            <div class="card-header">
+                                <h5>نموذج أساسي</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="basicForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">الاسم الكامل</label>
+                                        <input type="text" class="form-control" placeholder="أدخل الاسم الكامل">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">البريد الإلكتروني</label>
+                                        <input type="email" class="form-control" placeholder="example@email.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">كلمة المرور</label>
+                                        <div class="password-input">
+                                            <input type="password" class="form-control" placeholder="********">
+                                            <button type="button" class="toggle-password">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">الهاتف</label>
+                                        <input type="tel" class="form-control" placeholder="+20 123 456 7890">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">الرسالة</label>
+                                        <textarea class="form-control" rows="3" placeholder="أدخل رسالتك..."></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="termsCheck">
+                                            <label class="form-check-label" for="termsCheck">
+                                                أوافق على الشروط والأحكام
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="bi bi-send"></i>
+                                        إرسال
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Advanced Form -->
+                    <div class="col-lg-6">
+                        <div class="card form-card">
+                            <div class="card-header">
+                                <h5>نموذج متقدم</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="advancedForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">اختيار متعدد (Select2)</label>
+                                        <select class="form-select select2-multiple" multiple="multiple">
+                                            <option value="1">تصميم</option>
+                                            <option value="2">تطوير</option>
+                                            <option value="3">تسويق</option>
+                                            <option value="4">دعم فني</option>
+                                            <option value="5">إدارة</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">اختيار مع بحث</label>
+                                        <select class="form-select select2-search">
+                                            <option value="">اختر دولة...</option>
+                                            <option value="eg">مصر</option>
+                                            <option value="sa">السعودية</option>
+                                            <option value="ae">الإمارات</option>
+                                            <option value="kw">الكويت</option>
+                                            <option value="qa">قطر</option>
+                                            <option value="bh">البحرين</option>
+                                            <option value="om">عمان</option>
+                                            <option value="jo">الأردن</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">التاريخ والوقت</label>
+                                        <input type="text" class="form-control datetime-picker" placeholder="اختر التاريخ والوقت">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">نطاق السعر</label>
+                                        <div class="range-slider">
+                                            <input type="range" class="form-range" min="0" max="1000" value="500">
+                                            <div class="range-values">
+                                                <span>0</span>
+                                                <span class="current-value">500</span>
+                                                <span>1000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">رفع الملفات</label>
+                                        <div class="file-upload">
+                                            <input type="file" id="fileInput" multiple hidden>
+                                            <label for="fileInput" class="file-upload-label">
+                                                <i class="bi bi-cloud-arrow-up"></i>
+                                                <span>اسحب الملفات هنا أو انقر للاختيار</span>
+                                            </label>
+                                            <div class="file-list"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">المحرر المتقدم</label>
+                                        <textarea id="richEditor" class="form-control"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">
+                                        <i class="bi bi-check-lg"></i>
+                                        حفظ
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-person-plus"></i>
+                        إضافة مستخدم جديد
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addUserForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">الاسم الأول</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">الاسم الأخير</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">البريد الإلكتروني</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">الهاتف</label>
+                                <input type="tel" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">الدور</label>
+                                <select class="form-select select2-search">
+                                    <option value="admin">مدير</option>
+                                    <option value="editor">محرر</option>
+                                    <option value="user">مستخدم</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">الحالة</label>
+                                <select class="form-select">
+                                    <option value="active">نشط</option>
+                                    <option value="inactive">غير نشط</option>
+                                    <option value="banned">محظور</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">الملاحظات</label>
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="submit" form="addUserForm" class="btn btn-primary">
+                        <i class="bi bi-check-lg"></i>
+                        حفظ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-box-seam"></i>
+                        إضافة منتج جديد
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addProductForm">
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label class="form-label">اسم المنتج</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">الفئة</label>
+                                <select class="form-select select2-search">
+                                    <option value="electronics">إلكترونيات</option>
+                                    <option value="clothing">ملابس</option>
+                                    <option value="food">أطعمة</option>
+                                    <option value="books">كتب</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">السعر</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">السعر قبل الخصم</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">المخزون</label>
+                                <input type="number" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">وصف المنتج</label>
+                                <textarea id="productDescription" class="form-control"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">صور المنتج</label>
+                                <div class="file-upload">
+                                    <input type="file" id="productImages" multiple accept="image/*" hidden>
+                                    <label for="productImages" class="file-upload-label">
+                                        <i class="bi bi-images"></i>
+                                        <span>اسحب الصور هنا أو انقر للاختيار</span>
+                                    </label>
+                                    <div class="file-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="submit" form="addProductForm" class="btn btn-success">
+                        <i class="bi bi-check-lg"></i>
+                        حفظ المنتج
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-4">
+                    <div class="delete-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                    <h5>هل أنت متأكد؟</h5>
+                    <p class="text-muted">لن تتمكن من استعادة هذا العنصر!</p>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">إلغاء</button>
+                        <button type="button" class="btn btn-danger" id="confirmDelete">
+                            <i class="bi bi-trash"></i>
+                            حذف
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay for mobile -->
+    <div id="sidebarOverlay"></div>
+
+    <!-- Scripts -->
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- jQuery (required for DataTables and Select2) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+    
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <!-- Summernote JS -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.min.js"></script>
+    
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/sidebar.js"></script>
+    <script src="js/datatables.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
