@@ -1,0 +1,634 @@
+/* ============================================
+   ProgMaker Admin Dashboard - Components
+   ============================================ */
+
+/* ============================================
+   Form Elements
+   ============================================ */
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--body-bg);
+    color: var(--text-color);
+    transition: all var(--transition-fast);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+    background: var(--body-bg);
+    color: var(--text-color);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+    background: var(--gray-100);
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .form-control:disabled,
+[data-theme="dark"] .form-select:disabled {
+    background: var(--dark-border);
+}
+
+/* Input Groups */
+.input-group-text {
+    background: var(--gray-100);
+    border-color: var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+[data-theme="dark"] .input-group-text {
+    background: var(--dark-border);
+}
+
+/* Password Input */
+.password-input {
+    position: relative;
+}
+
+.password-input .form-control {
+    padding-left: 2.5rem;
+}
+
+.toggle-password {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color var(--transition-fast);
+}
+
+.toggle-password:hover {
+    color: var(--primary);
+}
+
+/* Form Check */
+.form-check-input {
+    width: 1.125rem;
+    height: 1.125rem;
+    border-color: var(--border-color);
+    background-color: var(--body-bg);
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+}
+
+.form-check-label {
+    font-size: 0.875rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* ============================================
+   Range Slider
+   ============================================ */
+
+.range-slider {
+    padding: 0.5rem 0;
+}
+
+.form-range::-webkit-slider-thumb {
+    background: var(--primary);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-range::-webkit-slider-runnable-track {
+    height: 4px;
+    background: var(--gray-200);
+    border-radius: 2px;
+}
+
+[data-theme="dark"] .form-range::-webkit-slider-runnable-track {
+    background: var(--dark-border);
+}
+
+.range-values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.range-values .current-value {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ============================================
+   File Upload
+   ============================================ */
+
+.file-upload {
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all var(--transition-fast);
+    background: var(--body-bg);
+}
+
+.file-upload:hover {
+    border-color: var(--primary);
+    background: rgba(var(--primary-rgb), 0.02);
+}
+
+.file-upload.dragover {
+    border-color: var(--primary);
+    background: rgba(var(--primary-rgb), 0.05);
+}
+
+.file-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    margin: 0;
+}
+
+.file-upload-label i {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.file-upload-label span {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.file-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--gray-100);
+    border-radius: var(--radius);
+    font-size: 0.8125rem;
+}
+
+[data-theme="dark"] .file-item {
+    background: var(--dark-border);
+}
+
+.file-item i {
+    color: var(--primary);
+}
+
+.file-item .remove-file {
+    background: none;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    padding: 0.125rem;
+    font-size: 0.75rem;
+}
+
+/* ============================================
+   Alerts
+   ============================================ */
+
+.alert {
+    border: none;
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+}
+
+.alert-primary {
+    background: rgba(var(--primary-rgb), 0.1);
+    color: var(--primary);
+}
+
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.alert-warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
+/* ============================================
+   Progress Bars
+   ============================================ */
+
+.progress {
+    height: 8px;
+    background: var(--gray-200);
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .progress {
+    background: var(--dark-border);
+}
+
+.progress-bar {
+    background: var(--primary);
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   Tabs
+   ============================================ */
+
+.nav-tabs {
+    border-bottom: 1px solid var(--border-color);
+    gap: 0.5rem;
+}
+
+.nav-tabs .nav-link {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    margin: 0;
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--text-color);
+    border-color: transparent;
+    background: none;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background: none;
+}
+
+.tab-content {
+    padding: 1.5rem 0;
+}
+
+/* ============================================
+   Pagination
+   ============================================ */
+
+.pagination {
+    gap: 0.25rem;
+}
+
+.page-link {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    color: var(--text-color);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius) !important;
+    transition: all var(--transition-fast);
+}
+
+.page-link:hover {
+    background: var(--gray-100);
+    color: var(--primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .page-link:hover {
+    background: var(--dark-border);
+}
+
+.page-item.active .page-link {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.page-item.disabled .page-link {
+    background: var(--gray-100);
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .page-item.disabled .page-link {
+    background: var(--dark-border);
+}
+
+/* ============================================
+   Dropdowns
+   ============================================ */
+
+.dropdown-menu {
+    animation: dropdownFadeIn 0.2s ease;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   Tooltips
+   ============================================ */
+
+.tooltip {
+    font-size: 0.75rem;
+}
+
+.tooltip-inner {
+    background: var(--gray-800);
+    padding: 0.375rem 0.625rem;
+    border-radius: var(--radius);
+}
+
+/* ============================================
+   Popovers
+   ============================================ */
+
+.popover {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.popover-header {
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .popover-header {
+    background: var(--dark-border);
+}
+
+.popover-body {
+    color: var(--text-color);
+}
+
+/* ============================================
+   Spinners
+   ============================================ */
+
+.spinner-border,
+.spinner-grow {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.spinner-border-sm,
+.spinner-grow-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* ============================================
+   Skeleton Loading
+   ============================================ */
+
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--gray-200) 25%,
+        var(--gray-300) 50%,
+        var(--gray-200) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: var(--radius);
+}
+
+[data-theme="dark"] .skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--dark-border) 25%,
+        var(--gray-700) 50%,
+        var(--dark-border) 75%
+    );
+    background-size: 200% 100%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ============================================
+   Status Indicators
+   ============================================ */
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.online {
+    background: var(--success);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.status-dot.away {
+    background: var(--warning);
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+.status-dot.offline {
+    background: var(--gray-400);
+}
+
+.status-dot.busy {
+    background: var(--danger);
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+/* ============================================
+   Avatars
+   ============================================ */
+
+.avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 600;
+    color: white;
+}
+
+.avatar-sm {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+}
+
+.avatar-md {
+    width: 40px;
+    height: 40px;
+    font-size: 0.875rem;
+}
+
+.avatar-lg {
+    width: 56px;
+    height: 56px;
+    font-size: 1.25rem;
+}
+
+.avatar-xl {
+    width: 80px;
+    height: 80px;
+    font-size: 1.75rem;
+}
+
+.avatar-group {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-group .avatar {
+    border: 2px solid var(--card-bg);
+    margin-left: -8px;
+}
+
+.avatar-group .avatar:first-child {
+    margin-left: 0;
+}
+
+/* ============================================
+   Cards Variants
+   ============================================ */
+
+.card-gradient-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+}
+
+.card-gradient-success {
+    background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+    color: white;
+}
+
+.card-gradient-danger {
+    background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+    color: white;
+}
+
+.card-gradient-warning {
+    background: linear-gradient(135deg, var(--warning) 0%, #d97706 100%);
+    color: white;
+}
+
+/* ============================================
+   Timeline
+   ============================================ */
+
+.timeline {
+    position: relative;
+    padding: 0;
+    list-style: none;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 20px;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.timeline-item {
+    position: relative;
+    padding-right: 50px;
+    margin-bottom: 1.5rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    right: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 3px solid var(--card-bg);
+}
+
+.timeline-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1rem;
+}
+
+.timeline-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-text {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
