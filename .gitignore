@@ -14,8 +14,7 @@
 /auth.json
 /node_modules
 
-/storage/*.key
-/storage/pail
+
 /vendor
 Homestead.json
 Homestead.yaml
