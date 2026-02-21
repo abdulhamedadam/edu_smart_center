@@ -10,6 +10,7 @@ use App\Services\GradeService;
 use App\Services\StudentParentService;
 use App\Services\StudentService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class StudentController extends Controller
@@ -21,11 +22,12 @@ class StudentController extends Controller
     ) {
     }
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        $students = $this->students->list();
+        $search = $request->query('search');
+        $students = $this->students->all($search);
 
-        return view('admin.students.index', compact('students'));
+        return view('admin.students.index', compact('students', 'search'));
     }
 
     public function create(): View

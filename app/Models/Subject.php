@@ -11,6 +11,7 @@ class Subject extends Model
     protected $fillable = [
         'grade_id',
         'name',
+        'monthly_fee',
     ];
 
     public function grade(): BelongsTo

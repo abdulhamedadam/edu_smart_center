@@ -23,7 +23,7 @@ class GroupController extends Controller
 
     public function index(): View
     {
-        $groups = $this->service->list();
+        $groups = $this->service->all();
         $grades = $this->grades->options();
         $subjects = $this->subjects->options();
 
@@ -41,7 +41,7 @@ class GroupController extends Controller
 
     public function edit(Group $group): View
     {
-        $groups = $this->service->list();
+        $groups = $this->service->all();
         $grades = $this->grades->options();
         $subjects = $this->subjects->optionsForGrade($group->grade_id);
 

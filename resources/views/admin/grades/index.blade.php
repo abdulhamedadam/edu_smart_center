@@ -64,7 +64,8 @@
                         <h5 class="mb-0">المراحل الدراسية</h5>
                     </div>
                     <div class="card-body p-0">
-                        <table class="table mb-0">
+                        <div class="table-responsive">
+                        <table class="table mb-0" id="gradesTable">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -100,9 +101,6 @@
                                 @endforelse
                             </tbody>
                         </table>
-
-                        <div class="p-3">
-                            {{ $grades->links() }}
                         </div>
                     </div>
                 </div>
@@ -111,3 +109,25 @@
     </div>
 @endsection
 
+@push('scripts')
+<script>
+    $(function () {
+        const table = $('#gradesTable');
+
+        if (table.length) {
+            table.DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/ar.json'
+                },
+                pageLength: 10,
+                lengthMenu: [10, 25, 50, 100],
+                ordering: true,
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: -1 }
+                ]
+            });
+        }
+    });
+</script>
+@endpush

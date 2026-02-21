@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\Subject;
 use App\Repositories\GroupRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 
 class GroupService
@@ -13,6 +14,11 @@ class GroupService
     public function __construct(
         protected GroupRepositoryInterface $groups
     ) {
+    }
+
+    public function all(): Collection
+    {
+        return $this->groups->allWithRelations();
     }
 
     public function list(): LengthAwarePaginator
@@ -52,4 +58,3 @@ class GroupService
         }
     }
 }
-

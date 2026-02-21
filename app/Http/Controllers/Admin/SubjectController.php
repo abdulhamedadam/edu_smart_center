@@ -23,7 +23,7 @@ class SubjectController extends Controller
 
     public function index(): View
     {
-        $subjects = $this->service->list();
+        $subjects = $this->service->options();
         $grades = $this->grades->options();
 
         return view('admin.subjects.index', compact('subjects', 'grades'));
@@ -40,7 +40,7 @@ class SubjectController extends Controller
 
     public function edit(Subject $subject): View
     {
-        $subjects = $this->service->list();
+        $subjects = $this->service->options();
         $grades = $this->grades->options();
 
         return view('admin.subjects.index', compact('subjects', 'grades', 'subject'));

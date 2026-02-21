@@ -19,6 +19,11 @@ class StudentParentService
         return $this->parents->paginate();
     }
 
+    public function all(): Collection
+    {
+        return $this->parents->all();
+    }
+
     public function options(): Collection
     {
         return $this->parents->all();
@@ -39,4 +44,3 @@ class StudentParentService
         $this->parents->delete($parent);
     }
 }
-

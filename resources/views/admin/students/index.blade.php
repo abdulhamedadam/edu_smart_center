@@ -2,19 +2,29 @@
 
 @section('content')
     <div class="container-fluid py-4">
+        <div class="page-header mb-4 d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="page-title mb-1">الطلاب</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('dashboard') }}">الرئيسية</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">الطلاب</li>
+                    </ol>
+                </nav>
+            </div>
+            <a href="{{ route('admin.students.create') }}" class="btn btn-primary">
+                <i class="bi bi-plus"></i>
+                إضافة طالب جديد
+            </a>
+        </div>
         <div class="row mb-4">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">قائمة الطلاب</h5>
-                        <a href="{{ route('admin.students.create') }}" class="btn btn-sm btn-primary">
-                            <i class="bi bi-plus"></i>
-                            إضافة طالب جديد
-                        </a>
-                    </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table table-hover mb-0">
+                            <table class="table table-hover mb-0" id="studentsTable">
                                 <thead>
                                     <tr>
                                         <th>الطالب</th>
@@ -51,6 +61,9 @@
                                                 <a href="{{ route('admin.students.edit', $item) }}" class="btn btn-sm btn-outline-primary">
                                                     <i class="bi bi-pencil"></i>
                                                 </a>
+                                                <a href="{{ $item->publicProfileUrl() }}" target="_blank" class="btn btn-sm btn-outline-info">
+                                                    عرض
+                                                </a>
                                                 <form action="{{ route('admin.students.destroy', $item) }}" method="POST" class="d-inline-block"
                                                       onsubmit="return confirm('هل أنت متأكد من الحذف؟');">
                                                     @csrf
@@ -72,9 +85,6 @@
                             </table>
                         </div>
 
-                        <div class="p-3">
-                            {{ $students->links() }}
-                        </div>
                     </div>
                 </div>
             </div>
@@ -82,3 +92,26 @@
     </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    $(function () {
+        const table = $('#studentsTable');
+
+        if (table.length) {
+            table.DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/ar.json'
+                },
+                pageLength: 10,
+                lengthMenu: [10, 25, 50, 100],
+                ordering: true,
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: [5, 6] }
+                ]
+            });
+        }
+    });
+</script>
+@endpush

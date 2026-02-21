@@ -28,3 +28,58 @@
     <link rel="stylesheet" href="{{asset("build/assets/admin/css/components.css")}}">
     <link rel="stylesheet" href="{{asset('build/assets/admin/css/datatables.css')}}">
     <link rel="stylesheet" href="{{asset('build/assets/admin/css/forms.css')}}">
+
+
+    <style>
+.dataTables_paginate {
+    margin-top: 15px;
+     margin-bottom: 20px !important;
+}
+
+.dataTables_paginate .page-link {
+    padding: 8px 18px !important;
+    min-width: 42px;
+    height: 42px;
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    background: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dataTables_paginate .active .page-link {
+    background: #6366f1 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.dataTables_paginate .disabled .page-link {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* نشيل أي ستايل من الـ li */
+.dataTables_paginate .paginate_button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* نخلي الزرار الحقيقي هو الـ page-link بس */
+.dataTables_paginate .page-link {
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    background: #fff !important;
+    padding: 8px 16px !important;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+    </style>

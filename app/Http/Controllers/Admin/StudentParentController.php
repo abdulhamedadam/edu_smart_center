@@ -18,7 +18,7 @@ class StudentParentController extends Controller
 
     public function index(): View
     {
-        $parents = $this->parents->list();
+        $parents = $this->parents->all();
 
         return view('admin.parents.index', compact('parents'));
     }

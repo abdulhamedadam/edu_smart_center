@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProgMaker - لوحة التحكم</title>
+    <title>@yield('title', 'ProgMaker - لوحة التحكم')</title>
     
     <!-- Bootstrap 5 RTL CSS -->
 

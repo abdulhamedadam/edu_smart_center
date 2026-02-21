@@ -19,7 +19,7 @@ class GradeController extends Controller
 
     public function index(): View
     {
-        $grades = $this->service->list();
+        $grades = $this->service->options();
 
         return view('admin.grades.index', compact('grades'));
     }
@@ -35,7 +35,7 @@ class GradeController extends Controller
 
     public function edit(Grade $grade): View
     {
-        $grades = $this->service->list();
+        $grades = $this->service->options();
 
         return view('admin.grades.index', compact('grades', 'grade'));
     }

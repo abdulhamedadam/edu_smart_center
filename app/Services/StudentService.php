@@ -8,6 +8,7 @@ use App\Repositories\StudentRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Collection;
 
 class StudentService
 {
@@ -16,9 +17,14 @@ class StudentService
     ) {
     }
 
-    public function list(): LengthAwarePaginator
+    public function list(?string $search = null): LengthAwarePaginator
     {
-        return $this->students->paginateWithRelations();
+        return $this->students->paginateWithRelations(15, $search);
+    }
+
+    public function all(?string $search = null): Collection
+    {
+        return $this->students->allWithRelations($search);
     }
 
     public function create(array $data): Student
@@ -75,4 +81,3 @@ class StudentService
         return 'STD'.str_pad((string) $nextId, 4, '0', STR_PAD_LEFT);
     }
 }
-

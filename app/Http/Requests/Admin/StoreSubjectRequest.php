@@ -24,6 +24,7 @@ class StoreSubjectRequest extends FormRequest
         return [
             'grade_id' => ['required', 'exists:grades,id'],
             'name' => ['required', 'string', 'max:255'],
+            'monthly_fee' => ['nullable', 'numeric', 'min:0'],
         ];
     }
 }

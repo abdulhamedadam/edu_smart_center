@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid py-4">
         <div class="row mb-4">
-            <div class="col-lg-6">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">إضافة طالب جديد</h5>
@@ -69,24 +69,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">اسم ولي الأمر (إن لم يكن مسجلًا)</label>
-                                <input type="text" name="parent_name" class="form-control @error('parent_name') is-invalid @enderror"
-                                       value="{{ old('parent_name') }}">
-                                @error('parent_name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">هاتف ولي الأمر</label>
-                                <input type="text" name="parent_phone" class="form-control @error('parent_phone') is-invalid @enderror"
-                                       value="{{ old('parent_phone') }}">
-                                @error('parent_phone')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
+                            
                             <div class="mb-3">
                                 <label class="form-label">صورة الطالب</label>
                                 <input type="file" name="avatar" class="form-control @error('avatar') is-invalid @enderror">
@@ -143,4 +126,3 @@
         </div>
     </div>
 @endsection
-

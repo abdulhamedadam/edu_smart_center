@@ -54,6 +54,25 @@
                                 @enderror
                             </div>
 
+                            <div class="mb-3">
+                                <label class="form-label">السعر الشهري للمادة</label>
+                                <div class="input-group">
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        min="0"
+                                        name="monthly_fee"
+                                        class="form-control @error('monthly_fee') is-invalid @enderror"
+                                        value="{{ old('monthly_fee', isset($subject) ? $subject->monthly_fee : '') }}"
+                                        placeholder="مثال: 300"
+                                    >
+                                    <span class="input-group-text">جنيه</span>
+                                </div>
+                                @error('monthly_fee')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="d-flex justify-content-between">
                                 <button type="submit" class="btn btn-primary">
                                     @isset($subject)
@@ -80,12 +99,14 @@
                         <h5 class="mb-0">مواد المراحل</h5>
                     </div>
                     <div class="card-body p-0">
-                        <table class="table mb-0">
+                        <div class="table-responsive">
+                        <table class="table mb-0" id="subjectsTable">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>المرحلة</th>
                                     <th>اسم المادة</th>
+                                    <th>السعر الشهري</th>
                                     <th class="text-center">التحكم</th>
                                 </tr>
                             </thead>
@@ -95,6 +116,13 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->grade?->name }}</td>
                                         <td>{{ $item->name }}</td>
+                                        <td>
+                                            @if(!is_null($item->monthly_fee))
+                                                {{ number_format($item->monthly_fee, 2) }} ج
+                                            @else
+                                                <span class="text-muted">لم يحدد</span>
+                                            @endif
+                                        </td>
                                         <td class="text-center">
                                             <a href="{{ route('admin.subjects.edit', $item) }}" class="btn btn-sm btn-outline-primary">
                                                 تعديل
@@ -118,9 +146,6 @@
                                 @endforelse
                             </tbody>
                         </table>
-
-                        <div class="p-3">
-                            {{ $subjects->links() }}
                         </div>
                     </div>
                 </div>
@@ -129,3 +154,25 @@
     </div>
 @endsection
 
+@push('scripts')
+<script>
+    $(function () {
+        const table = $('#subjectsTable');
+
+        if (table.length) {
+            table.DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/ar.json'
+                },
+                pageLength: 10,
+                lengthMenu: [10, 25, 50, 100],
+                ordering: true,
+                responsive: true,
+                columnDefs: [
+                    { orderable: false, targets: -1 }
+                ]
+            });
+        }
+    });
+</script>
+@endpush

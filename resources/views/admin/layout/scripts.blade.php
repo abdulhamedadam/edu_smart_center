@@ -33,3 +33,4 @@
     <script src="{{asset('build/assets/admin/js/forms.js')}}"></script>
     <script src="{{asset('build/assets/admin/js/charts.js')}}"></script>
     <script src="{{asset('build/assets/admin/js/main.js')}}"></script>      
+    

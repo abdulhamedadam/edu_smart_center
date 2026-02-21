@@ -94,6 +94,15 @@
                                 @enderror
                             </div>
 
+                            <div class="mb-3">
+                                <label class="form-label">المصروف الشهري (رسوم المادة)</label>
+                                <input type="number" step="0.01" name="monthly_fee" class="form-control @error('monthly_fee') is-invalid @enderror"
+                                       value="{{ old('monthly_fee', $group->monthly_fee ?? '') }}">
+                                @error('monthly_fee')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="d-flex justify-content-between">
                                 <button type="submit" class="btn btn-primary">
                                     @isset($group)
@@ -120,10 +129,8 @@
                         <h5 class="mb-0">مجموعات المواد</h5>
                     </div>
                     <div class="card-body p-0">
-                        <div class="p-3">
-                            <input type="text" id="groupsSearch" class="form-control" placeholder="ابحث في المجموعات...">
-                        </div>
-                        <table class="table mb-0" id="groupsTable">
+                        <div class="table-responsive">
+                        <table class="table table-hover mb-0 align-middle" id="groupsTable">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -131,6 +138,7 @@
                                     <th>المادة</th>
                                     <th>اسم المجموعة</th>
                                     <th>السعة</th>
+                                    <th>رسوم شهرية</th>
                                     <th class="text-center">التحكم</th>
                                 </tr>
                             </thead>
@@ -142,6 +150,7 @@
                                         <td>{{ $item->subject?->name }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->capacity }}</td>
+                                        <td>{{ $item->monthly_fee !== null ? number_format($item->monthly_fee, 2) : '-' }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('admin.groups.edit', $item) }}" class="btn btn-sm btn-outline-primary">
                                                 تعديل
@@ -166,9 +175,6 @@
                             </tbody>
                         </table>
 
-                        <div class="p-3">
-                            {{ $groups->links() }}
-                        </div>
                     </div>
                 </div>
             </div>
@@ -219,17 +225,22 @@
                 loadSubjectsForGrade(gradeSelect.val(), initialSubjectId);
             }
 
-            const groupsSearch = $('#groupsSearch');
             const groupsTable = $('#groupsTable');
 
-            groupsSearch.on('keyup', function () {
-                const query = $(this).val().toLowerCase();
-
-                groupsTable.find('tbody tr').each(function () {
-                    const text = $(this).text().toLowerCase();
-                    $(this).toggle(text.indexOf(query) !== -1);
+            if (groupsTable.length) {
+                groupsTable.DataTable({
+                    language: {
+                        url: 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/ar.json'
+                    },
+                    pageLength: 10,
+                    lengthMenu: [10, 25, 50, 100],
+                    ordering: true,
+                    responsive: true,
+                    columnDefs: [
+                        { orderable: false, targets: -1 }
+                    ]
                 });
-            });
+            }
         });
     </script>
 @endpush

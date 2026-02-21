@@ -27,6 +27,7 @@ class UpdateGroupRequest extends FormRequest
             'teacher_id' => ['nullable', 'integer'],
             'name' => ['required', 'string', 'max:255'],
             'capacity' => ['required', 'integer', 'min:1'],
+            'monthly_fee' => ['nullable', 'numeric', 'min:0'],
         ];
     }
 }

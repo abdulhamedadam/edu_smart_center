@@ -4,54 +4,70 @@
                 <button id="mobileToggle" class="mobile-toggle d-lg-none">
                     <i class="bi bi-list"></i>
                 </button>
-                <div class="search-box d-none d-md-flex">
+                <form method="GET" action="{{ route('admin.students.index') }}" class="search-box d-none d-md-flex">
                     <i class="bi bi-search"></i>
-                    <input type="text" placeholder="بحث...">
-                </div>
+                    <input
+                        type="text"
+                        name="search"
+                        value="{{ request('search') }}"
+                        placeholder="بحث عن طالب بالاسم أو الكود"
+                    >
+                </form>
             </div>
             
             <div class="navbar-right">
                 <div class="nav-item dropdown">
                     <button class="nav-btn" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
-                        <span class="notification-badge">5</span>
+                        @if(($headerNotificationsCount ?? 0) > 0)
+                            <span class="notification-badge">{{ $headerNotificationsCount }}</span>
+                        @endif
                     </button>
                     <div class="dropdown-menu dropdown-menu-end notifications-dropdown">
                         <div class="dropdown-header">
                             <span>الإشعارات</span>
-                            <a href="#" class="mark-all-read">تحديد الكل كمقروء</a>
                         </div>
                         <div class="notifications-list">
-                            <a href="#" class="notification-item unread">
-                                <div class="notification-icon bg-primary">
-                                    <i class="bi bi-person-plus"></i>
+                            @forelse($headerNotifications ?? [] as $notification)
+                                @php
+                                    $icon = 'bi-bell';
+                                    $bg = 'bg-primary';
+                                    if ($notification->type === 'absence') {
+                                        $icon = 'bi-person-dash';
+                                        $bg = 'bg-danger';
+                                    } elseif ($notification->type === 'exam') {
+                                        $icon = 'bi-award';
+                                        $bg = 'bg-info';
+                                    } elseif ($notification->type === 'broadcast') {
+                                        $icon = 'bi-megaphone';
+                                        $bg = 'bg-success';
+                                    }
+
+                                    $who = $notification->student?->name
+                                        ?? $notification->parent?->name
+                                        ?? '';
+                                @endphp
+                                <div class="notification-item">
+                                    <div class="notification-icon {{ $bg }}">
+                                        <i class="bi {{ $icon }}"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <p class="mb-0">
+                                            @if($who)
+                                                <strong>{{ $who }}:</strong>
+                                            @endif
+                                            {{ \Illuminate\Support\Str::limit($notification->title ?: $notification->body, 60) }}
+                                        </p>
+                                        <span class="time">
+                                            {{ $notification->sent_at?->diffForHumans() }}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="notification-content">
-                                    <p>مستخدم جديد تم تسجيله</p>
-                                    <span class="time">منذ 5 دقائق</span>
-                                </div>
-                            </a>
-                            <a href="#" class="notification-item unread">
-                                <div class="notification-icon bg-success">
-                                    <i class="bi bi-check-circle"></i>
-                                </div>
-                                <div class="notification-content">
-                                    <p>تم اكتمال الطلب #1234</p>
-                                    <span class="time">منذ 15 دقيقة</span>
-                                </div>
-                            </a>
-                            <a href="#" class="notification-item">
-                                <div class="notification-icon bg-warning">
-                                    <i class="bi bi-exclamation-triangle"></i>
-                                </div>
-                                <div class="notification-content">
-                                    <p>تنبيه: مخزون منخفض</p>
-                                    <span class="time">منذ ساعة</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="dropdown-footer">
-                            <a href="#">عرض الكل</a>
+                            @empty
+                                <p class="text-center text-muted py-3 mb-0">
+                                    لا توجد إشعارات حالياً
+                                </p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -59,33 +75,36 @@
                 <div class="nav-item dropdown">
                     <button class="nav-btn" data-bs-toggle="dropdown">
                         <i class="bi bi-envelope"></i>
-                        <span class="notification-badge">3</span>
+                        @if(($headerMessagesCount ?? 0) > 0)
+                            <span class="notification-badge">{{ $headerMessagesCount }}</span>
+                        @endif
                     </button>
                     <div class="dropdown-menu dropdown-menu-end messages-dropdown">
                         <div class="dropdown-header">
                             <span>الرسائل</span>
-                            <a href="#" class="mark-all-read">تحديد الكل كمقروء</a>
                         </div>
                         <div class="messages-list">
-                            <a href="#" class="message-item unread">
-                                <img src="https://ui-avatars.com/api/?name=Ahmed+Mohamed&background=random" alt="">
-                                <div class="message-content">
-                                    <h6>أحمد محمد</h6>
-                                    <p>مرحباً، هل يمكنك مساعدتي في...</p>
-                                    <span class="time">منذ 10 دقائق</span>
+                            @forelse($headerMessages ?? [] as $message)
+                                @php
+                                    $name = $message->parent?->name
+                                        ?? $message->student?->name
+                                        ?? $message->title;
+                                @endphp
+                                <div class="message-item">
+                                    <img src="https://ui-avatars.com/api/?name={{ urlencode($name) }}&background=random" alt="">
+                                    <div class="message-content">
+                                        <h6>{{ $name }}</h6>
+                                        <p>{{ \Illuminate\Support\Str::limit($message->body, 70) }}</p>
+                                        <span class="time">
+                                            {{ $message->sent_at?->diffForHumans() }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </a>
-                            <a href="#" class="message-item unread">
-                                <img src="https://ui-avatars.com/api/?name=Sara+Ali&background=random" alt="">
-                                <div class="message-content">
-                                    <h6>سارة علي</h6>
-                                    <p>شكراً لك على المساعدة!</p>
-                                    <span class="time">منذ 30 دقيقة</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="dropdown-footer">
-                            <a href="#">عرض الكل</a>
+                            @empty
+                                <p class="text-center text-muted py-3 mb-0">
+                                    لا توجد رسائل حالياً
+                                </p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -98,8 +117,8 @@
                 
                 <div class="nav-item dropdown user-dropdown">
                     <button class="user-btn" data-bs-toggle="dropdown">
-                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=6366f1&color=fff" alt="User">
-                        <span class="d-none d-md-inline">المسؤول</span>
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'Admin User') }}&background=6366f1&color=fff" alt="User">
+                        <span class="d-none d-md-inline">{{ auth()->user()->name ?? 'المسؤول' }}</span>
                         <i class="bi bi-chevron-down"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
@@ -112,10 +131,13 @@
                             الإعدادات
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item text-danger">
-                            <i class="bi bi-box-arrow-right"></i>
-                            تسجيل الخروج
-                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-danger w-100 text-start">
+                                <i class="bi bi-box-arrow-right"></i>
+                                تسجيل الخروج
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

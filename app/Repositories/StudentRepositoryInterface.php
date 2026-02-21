@@ -4,10 +4,13 @@ namespace App\Repositories;
 
 use App\Models\Student;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 interface StudentRepositoryInterface
 {
-    public function paginateWithRelations(int $perPage = 15): LengthAwarePaginator;
+    public function allWithRelations(?string $search = null): Collection;
+
+    public function paginateWithRelations(int $perPage = 15, ?string $search = null): LengthAwarePaginator;
 
     public function find(int $id): ?Student;
 
@@ -17,4 +20,3 @@ interface StudentRepositoryInterface
 
     public function delete(Student $student): void;
 }
-

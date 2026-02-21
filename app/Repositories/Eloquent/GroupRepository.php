@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent;
 use App\Models\Group;
 use App\Repositories\GroupRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class GroupRepository implements GroupRepositoryInterface
 {
@@ -13,6 +14,13 @@ class GroupRepository implements GroupRepositoryInterface
         return Group::with(['grade', 'subject'])
             ->orderBy('created_at', 'desc')
             ->paginate($perPage);
+    }
+
+    public function allWithRelations(): Collection
+    {
+        return Group::with(['grade', 'subject'])
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 
     public function find(int $id): ?Group
@@ -37,4 +45,3 @@ class GroupRepository implements GroupRepositoryInterface
         $group->delete();
     }
 }
-
